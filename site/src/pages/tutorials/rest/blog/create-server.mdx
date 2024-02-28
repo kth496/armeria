@@ -39,6 +39,7 @@ Let's create a server instance using Armeria's <type://ServerBuilder>:
 
   ```java filename=Main.java highlight=10
   import com.linecorp.armeria.common.HttpResponse;
+  import com.linecorp.armeria.common.SessionProtocol
   import com.linecorp.armeria.server.Server;
   import com.linecorp.armeria.server.ServerBuilder;
 
@@ -46,7 +47,7 @@ Let's create a server instance using Armeria's <type://ServerBuilder>:
     ...
     static Server newServer(int port) {
       ServerBuilder sb = Server.builder();
-      return sb.http(port)
+      return sb.http(port, SessionProtocol.HTTP)
                .service("/", (ctx, req) -> HttpResponse.of("Hello, Armeria!"))
                .build();
     }
